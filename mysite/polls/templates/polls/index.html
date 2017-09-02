@@ -1,0 +1,11 @@
+{% if carreras %}
+	<ul>
+		{% for carrera in carreras %}
+		<li>
+			<a href="/polls/{{ carrera.id }}"> {{ carrera.nombreCarrera }} </a>
+		</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<h2>No hay carreras</h2>
+{% endif %}
