@@ -17,3 +17,30 @@ class MallaCurricular(models.Model):
 
     def __str__(self):
         return self.nombreMalla
+
+class Asignatura(models.Model):
+    mallaCurricular = models.ForeignKey(MallaCurricular, on_delete=models.CASCADE)
+    nombreAsignatura = models.CharField(max_length=250)
+    claveAsignatura = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nombreAsignatura
+
+class InstanciaAsignatura(models.Model):
+    asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
+    anno = models.CharField(max_length=20)
+    semestre = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.anno
+
+class Estudiante(models.Model):
+    nombre = models.CharField(max_length=20)
+    apellido = models.CharField(max_length=20)
+    edad = models.CharField(max_length=20)
+    fono = models.CharField(max_length=20,null=True)
+    direccion = models.CharField(max_length=50,null=True)
+    correo = models.CharField(max_length=100,null=True)
+
+    def __str__(self):
+        return self.nombre
