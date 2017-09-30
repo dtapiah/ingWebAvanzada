@@ -33,9 +33,6 @@ class Profesor(models.Model):
 	nombreP = models.CharField(max_length=20)
 	apellidoP = models.CharField(max_length=20)
 
-	def __str__(self):
-		return self.dniP
-
 class InstanciaAsignatura(models.Model):
 	asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
 	profe = models.ForeignKey(Profesor, on_delete=models.CASCADE)
