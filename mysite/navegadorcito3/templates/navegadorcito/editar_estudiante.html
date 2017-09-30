@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Estudiante</title>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/bootstrap.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/estilos.css' %}" />
+
+</head>
+<body>
+<div class="container">
+	<h1>Editar Datos del Estudiante</h1>
+	<div>
+		<form action="/navegadorcito3/guardar_estudiante/" method="post">
+			{% csrf_token %}
+			<div>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>DNI:</label>
+					</div>
+					<div class="col-md-4">
+						<input class="form-control" value="{{ usuario.dni }}" disabled>
+					</div>
+				</div>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>Nombre:</label>
+					</div>
+					<div class="col-md-4">
+						<input name="nombre" class="form-control" value="{{ usuario.nombre }}" disabled>
+					</div>
+				</div>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>Apellido:</label>
+					</div>
+					<div class="col-md-4">
+						<input name="apellido" class="form-control" value="{{ usuario.apellido }}" disabled>
+					</div>
+				</div>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>Fono:</label>
+					</div>
+					<div class="col-md-4">
+						<input name="fono" class="form-control" value="{{ usuario.fono }}">
+					</div>
+				</div>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>Direccion:</label>
+					</div>
+					<div class="col-md-4">
+						<input name="direccion" class="form-control" value="{{ usuario.direccion }}">
+					</div>
+				</div>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>Correo:</label>
+					</div>
+					<div class="col-md-4">
+						<input name="correo" class="form-control" value="{{ usuario.correo }}">
+					</div>
+				</div>		
+			</div>
+			<input type="hidden" name="dni" value="{{ usuario.dni }}">
+			<input type="submit" class="btn btn-primary" value="Guardar">
+		</form>
+	</div>
+</div>
+<body>
+ 
+</html><!-- Etiqueta de cierre de HTML -->
+    

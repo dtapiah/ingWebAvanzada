@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Estudiante</title>
+
+{% load static %}
+
+<!-- Latest compiled and minified JavaScript -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/bootstrap.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/estilos.css' %}" />
+
+</head>
+<body>
+<div class="container">
+	<div>
+		<div class="row">
+			<div class="col-md-4">
+				<h2>Datos del Estudiante</h2>
+			</div>
+			<div class="col-md-4">
+			</div>
+			{% if vista == True %}
+				<div class="col-md-4">
+					<br>
+					<input class="btn btn-primary" type="button" onclick=" location.href='/navegadorcito3/' " value="Cerrar Sesion" name="boton" />
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	<div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>DNI:</label>
+			</div>
+			<div class="col-md-4">
+				<label>{{ usuario.dni }}</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Nombre:</label>
+			</div>
+			<div class="col-md-4">
+				<label>{{ usuario.nombre }}</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Apellido:</label>
+			</div>
+			<div class="col-md-4">
+				<label>{{ usuario.apellido }}</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Fono:</label>
+			</div>
+			<div class="col-md-4">
+				<label>{{ usuario.fono }}</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Direccion:</label>
+			</div>
+			<div class="col-md-4">
+				<label>{{ usuario.direccion }}</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Correo:</label>
+			</div>
+			<div class="col-md-4">
+				<label>{{ usuario.correo }}</label>
+			</div>
+		</div>		
+		
+		{% if vista == True %}
+			<form action="/navegadorcito3/editar_estudiante/" method="post">
+				{% csrf_token %}
+				<input type="hidden" name ="dni" value="{{ usuario.dni }}">
+				<input type="submit" class="btn btn-primary" value="Editar">
+			</form>	
+		{% endif %}
+	</div>
+	{% if vista == True %}
+		<div>
+			<form action="/navegadorcito3/recargar_estudiante/" method="post">
+				{% csrf_token %}
+				<br><br>		
+				<h2>Filtros Inscripciones:</h2>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>Carrera:</label>
+					</div>
+					<div class="col-md-4">
+						<input class="form-control" value="{{ carrera }}" name ="carrera">
+					</div>
+					<div class="col-md-2">
+						<label>Año:</label>
+					</div>
+					<div class="col-md-4">
+						<input class="form-control" value="{{ anno }}" name ="anno">
+					</div>
+				</div>
+				<div class="row fila-formulario">
+					<div class="col-md-2">
+						<label>Semestre:</label>
+					</div>
+					<div class="col-md-4">
+						<input class="form-control" value="{{ semestre }}" name ="semestre">
+					</div>
+					<div class="col-md-2">
+						<label>Estado:</label>
+					</div>
+					<div class="col-md-4">
+						<input class="form-control" value="{{ estado }}" name ="estado">
+					</div>
+				</div>
+				<input type="hidden" name ="dni" value="{{ usuario.dni }}">
+				<input type="submit" class="btn btn-primary" value="Buscar">
+			</form>	
+		</div>
+	{% endif %}
+	<div>
+		<br>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Clave</th>
+					<th>Nombre</th>
+					<th>Carrera</th>
+					<th>Fecha</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for obj in lista_inscipciones%}
+				<tr>
+					<td>{{ obj.clave }}</td>
+					<td>{{ obj.nombre }}</td>
+					<td>{{ obj.carrera }}</td>
+					<td>{{ obj.semestre }} Semestre - {{ obj.anno }}</td>
+					<td>{{ obj.estado }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+<body>
+ 
+</html><!-- Etiqueta de cierre de HTML -->
+    

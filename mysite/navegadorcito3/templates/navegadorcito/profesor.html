@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profesor</title>
+
+{% load static %}
+
+<!-- Latest compiled and minified JavaScript -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/bootstrap.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/estilos.css' %}" />
+
+</head>
+<body>
+<div class="container">
+	<div>
+		<div class="row">
+			<div class="col-md-4">
+				<h1>Datos del Profesor</h1>
+			</div>
+			<div class="col-md-4">
+				
+			</div>
+			<div class="col-md-4">
+				<br>
+				<input class="btn btn-primary" type="button" onclick=" location.href='/navegadorcito3/' " value="Cerrar Sesion" name="boton" />
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>DNI:</label>
+			</div>
+			<div class="col-md-4">
+				<label> {{ usuario.dniP }} </label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Nombre:</label>
+			</div>
+			<div class="col-md-4">
+				<label> {{ usuario.nombreP }} </label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Apellido:</label>
+			</div>
+			<div class="col-md-4">
+				<label> {{ usuario.apellidoP }} </label>
+			</div>
+		</div>		
+		
+	</div>
+	<div>
+		<form action="/navegadorcito3/recargar_profe/" method="post">
+			{% csrf_token %}
+			<br><br>
+			<h2>Filtros Asignaturas:</h2>
+			<div class="row fila-formulario">
+				<div class="col-md-2">
+					<label>Carrera:</label>
+				</div>
+				<div class="col-md-4">
+					<input class="form-control" value="{{ carrera }}" name ="carrera">
+				</div>
+				<div class="col-md-2">
+					<label>Año:</label>
+				</div>
+				<div class="col-md-4">
+					<input class="form-control" value="{{ anno }}" name ="anno">
+				</div>
+			</div>
+			<div class="row fila-formulario">
+				<div class="col-md-2">
+					<label>Semestre:</label>
+				</div>
+				<div class="col-md-4">
+					<input class="form-control" value="{{ semestre }}" name ="semestre">
+				</div>
+			</div>
+			<input type="hidden" name ="dni" value="{{ usuario.dniP }}">
+			<input type="submit" class="btn btn-primary" value="Buscar">
+		</form>	
+	</div>
+	<div>
+		<br>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Clave</th>
+					<th>Nombre</th>
+					<th>Carrera</th>
+					<th>Fecha</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for obj in lista_asinaturas %}
+				<tr>
+					<td>{{ obj.clave }}</td>
+					<td>{{ obj.nombre }}</td>
+					<td>{{ obj.carrera }}</td>
+					<td>{{ obj.semestre }} Semestre - {{ obj.anno }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br>
+		<input class="btn btn-primary" type="button" onclick=" location.href='/navegadorcito3/{{ usuario.dniP }}/' " value="Ver Lista de Estudiantes" name="boton" />
+		<br><br>
+	</div>
+</div>
+<body>
+ 
+</html><!-- Etiqueta de cierre de HTML -->

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LOGIN</title>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/bootstrap.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'navegadorcito/estilos.css' %}" />
+<!--<script src="general/js/jquery-3.2.1.min.js"></script>
+<script src="general/js/bootstrap.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+-->
+</head>
+<body>
+	<div class="container">
+		<div class="contenido-login">
+			<h1 class="text-center">Inicio de Sesión</h1>
+			<form action="/navegadorcito3/ingreso_login/" method="post">
+				{% csrf_token %}
+				<label>DNI:</label>
+				<input type="text" class="form-control input-form" name="dni" placeholder="Ingrese DNI" required="required">
+				<label>Constraseña:</label>
+				<input type="password" class="form-control input-form" name="password" placeholder="Ingrese Constraseña" required="required">
+				<label>Perfil:</label>
+				<select class="form-control" name = "tipo" required="required">
+					<option value = "P">Profesor</option>
+					<option value = "E">Estudiante</option>
+				</select>
+				<input type="submit" class="btn btn-primary btn-ingresar" value="Ingresar">
+			</form>
+		</div>
+		
+	</div>
+<body>
+ 
+</html><!-- Etiqueta de cierre de HTML -->
+    
